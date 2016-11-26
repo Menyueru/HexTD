@@ -15,7 +15,6 @@ namespace HexTD.PathFinding
             frontier.Insert(target);
             var came_from = new Dictionary<int, int>();
             came_from.Add(target, -1);
-            var targetVector = graph.GetNode(target).value.transform.position;
             while (!frontier.IsEmpty())
             {
                 var current = frontier.Pop();

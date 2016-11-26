@@ -14,7 +14,6 @@ namespace HexTD
         [HideInInspector]
         public PathFinder path;
         private int currentNode = 0;
-        private float lastNodeSwitch;
         private float originalSpeed;
 
         IEnumerator RecoverSlow(float slowFor)
@@ -50,7 +49,6 @@ namespace HexTD
         // Use this for initialization
         void Start()
         {
-            this.lastNodeSwitch = Time.time;
             path = GameObject.Find("Board").GetComponent<PathFinder>();
             transform.position = path.NodeInPath(currentNode).transform.position;
         }
@@ -77,7 +75,6 @@ namespace HexTD
             if (Vector2.Distance(startPosition,transform.position)>=distance)
             {
                 currentNode = path.CurrentPath[currentNode];
-                lastNodeSwitch = Time.time;
                 if (path.CurrentPath[currentNode] == -1)
                 {
                     var board = GameObject.Find("Board").GetComponent<BoardHandle>();
