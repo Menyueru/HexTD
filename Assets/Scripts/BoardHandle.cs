@@ -60,6 +60,7 @@ namespace HexTD
         {
             var towerObject = SelectedGameObject.Tower;
             var tower = towerObject.GetComponent<BaseTower>();
+            SelectedGameObject.HasTower = false;
             SelectedGameObject.Tower = null;
             currency += tower.sellPrice;
             Destroy(towerObject);
