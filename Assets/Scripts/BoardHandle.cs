@@ -90,6 +90,15 @@ namespace HexTD
             Application.Quit();
         }
 
+        private bool IsPointerOverUIObject()
+        {
+            var eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+            eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            var results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+            return results.Count > 0;
+        }
+
         // Update is called once per frame
         void Update()
         {
@@ -97,7 +106,7 @@ namespace HexTD
             {
                 SceneManager.LoadScene("Game");
             }
-            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+            if (Input.GetMouseButton(0) && !IsPointerOverUIObject())
             {
                 if (SelectedGameObject != null)
                 {
